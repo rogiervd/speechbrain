@@ -174,7 +174,7 @@ class QLinear(torch.nn.Module):
             init_criterion,
         )
 
-    @torch.jit.ignore
+    @torch.jit.ignore  # type: ignore
     def forward(self, x):
         """Returns the linear transformation of input tensor.
 

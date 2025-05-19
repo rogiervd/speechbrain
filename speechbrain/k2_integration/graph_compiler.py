@@ -190,7 +190,7 @@ class GraphCompiler(abc.ABC):
         LG = k2.remove_epsilon(LG)
 
         LG = k2.connect(LG)
-        LG.aux_labels = LG.aux_labels.remove_values_eq(0)
+        LG.aux_labels = LG.aux_labels.remove_values_eq(0)  # type: ignore
         logger.info("Arc sorting LG")
         LG = k2.arc_sort(LG)
 

@@ -255,7 +255,7 @@ def __new_reset(self, loader, first_iter=False, *args, **kwargs):
 # functools.update_wrapper is meant for decorators, but it should basically
 # preserve what we want:
 functools.update_wrapper(__new_init, _BaseDataLoaderIter.__init__)
-_BaseDataLoaderIter.__old_init__ = _BaseDataLoaderIter.__init__
+_BaseDataLoaderIter.__old_init__ = _BaseDataLoaderIter.__init__  # type: ignore
 _BaseDataLoaderIter.__init__ = __new_init
 if hasattr(_BaseDataLoaderIter, "_reset"):
     _BaseDataLoaderIter._reset = __new_reset

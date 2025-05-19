@@ -362,12 +362,12 @@ class Pretrained(torch.nn.Module):
                 )
                 continue
 
-            self.mods[name] = module.to(self.device)
+            self.mods[name] = module.to(self.device)  # type: ignore
             jit_module_keys.discard(name)
 
         for name in jit_module_keys:
             module = torch.jit.script(self.mods[name])
-            self.mods[name] = module.to(self.device)
+            self.mods[name] = module.to(self.device)  # type: ignore
 
     def _compile_jit(self):
         warnings.warn("'_compile_jit' is deprecated; use '_compile' instead")

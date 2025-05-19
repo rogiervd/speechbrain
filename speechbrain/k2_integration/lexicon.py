@@ -189,7 +189,7 @@ class Lexicon(object):
         LG.labels = labels
 
         assert isinstance(LG.aux_labels, k2.RaggedTensor)
-        LG.aux_labels.values[LG.aux_labels.values >= first_word_disambig_id] = 0
+        LG.aux_labels.values[LG.aux_labels.values >= first_word_disambig_id] = 0  # type: ignore
         return LG
 
     def texts_to_word_ids(

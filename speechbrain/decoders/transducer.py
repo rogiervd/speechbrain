@@ -293,7 +293,7 @@ class TransducerBeamSearcher(torch.nn.Module):
         -------
         hyp : torch.Tensor
         """
-        (hyp, _scores, _, _, hidden) = self.transducer_greedy_decode(
+        (hyp, _scores, _, _, hidden) = self.transducer_greedy_decode(  # type: ignore
             x, context.hidden, return_hidden=True
         )
         context.hidden = hidden

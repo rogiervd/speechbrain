@@ -46,7 +46,7 @@ def lattice_path_to_textid(
     """
     if isinstance(best_paths.aux_labels, k2.RaggedTensor):
         # remove 0's and -1's.
-        aux_labels = best_paths.aux_labels.remove_values_leq(0)
+        aux_labels = best_paths.aux_labels.remove_values_leq(0)  # type: ignore
         # TODO: change arcs.shape() to arcs.shape
         aux_shape = best_paths.arcs.shape().compose(aux_labels.shape)
 

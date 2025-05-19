@@ -694,7 +694,7 @@ class CTCBaseSearcher(torch.nn.Module):
 
         if unigrams is None and kenlm_model_path is not None:
             if kenlm_model_path.endswith(".arpa"):
-                unigrams = load_unigram_set_from_arpa(kenlm_model_path)
+                unigrams = load_unigram_set_from_arpa(kenlm_model_path)  # type: ignore
             else:
                 logger.warning(
                     "Unigrams not provided and cannot be automatically determined from LM file (only "
@@ -702,7 +702,7 @@ class CTCBaseSearcher(torch.nn.Module):
                 )
 
         if self.kenlm_model is not None:
-            self.lm = LanguageModel(
+            self.lm = LanguageModel(  # type: ignore
                 kenlm_model=self.kenlm_model,
                 unigrams=unigrams,
                 alpha=self.alpha,
@@ -974,13 +974,13 @@ class CTCBaseSearcher(torch.nn.Module):
             wav_lens = log_probs.size(1) * wav_lens
             wav_lens = wav_lens.cpu().numpy().astype(int)
         else:
-            wav_lens = [log_probs.size(1)] * log_probs.size(0)
+            wav_lens = [log_probs.size(1)] * log_probs.size(0)  # type: ignore
 
         log_probs = log_probs.cpu().numpy()
 
         hyps = [
             self.decode_log_probs(log_prob, wav_len, lm_start_state)
-            for log_prob, wav_len in zip(log_probs, wav_lens)
+            for log_prob, wav_len in zip(log_probs, wav_lens)  # type: ignore
         ]
         return hyps
 
